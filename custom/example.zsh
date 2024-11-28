@@ -1,5 +1,5 @@
 # Put files in this folder to add your own custom functionality.
-# See: https://github.com/ryzsh/ryzsh/wiki/Customization
+# See: https://github.com/ohmyzsh/ohmyzsh/wiki/Customization
 #
 # Files in the custom/ directory will be:
 # - loaded automatically by the init script, in alphabetical order

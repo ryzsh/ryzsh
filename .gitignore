@@ -2,7 +2,7 @@
 #custom/
 
 # temp files directories
-#cache/
+cache/
 #log/
 *.swp
 .DS_Store

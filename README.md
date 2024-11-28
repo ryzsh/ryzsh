@@ -1,4 +1,4 @@
-<p align="center"><img src="https://ryzsh.s3.amazonaws.com/ryz-ansi-github.png" alt="RyZsh"></p>
+<p align="center"><img src="https://ohmyz.sh/img/ohmyzsh-logo-ansi.png" alt="RyZsh"></p>
 
 RyZsh is an open source, community-driven framework for managing your [zsh](https://www.zsh.org/)
 configuration.

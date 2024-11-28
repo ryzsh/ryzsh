@@ -215,18 +215,36 @@ unset config_file
 is_theme() {
   local base_dir=$1
   local name=$2
-  builtin test -f $base_dir/$name.zsh-theme
+  builtin test -f "$base_dir/$name.zsh-theme"
+}
+
+# Custom theme search function
+find_theme() {
+  local name=$1
+  local paths=(
+    "$ZSH_CUSTOM"                 # Custom root
+    "$ZSH_CUSTOM/themes"          # Custom themes directory
+    "$ZSH/themes"                 # Default Oh My Zsh themes
+    "$HOME/$name"                 # Directories in user's home
+    "$HOME/.local/share/$name"    # Common local share directory
+  )
+
+  for base_dir in "${paths[@]}"; do
+    if is_theme "$base_dir" "$name"; then
+      echo "$base_dir/$name.zsh-theme"
+      return 0
+    fi
+  done
+
+  return 1
 }
 
 if [[ -n "$ZSH_THEME" ]]; then
-  if is_theme "$ZSH_CUSTOM" "$ZSH_THEME"; then
-    source "$ZSH_CUSTOM/$ZSH_THEME.zsh-theme"
-  elif is_theme "$ZSH_CUSTOM/themes" "$ZSH_THEME"; then
-    source "$ZSH_CUSTOM/themes/$ZSH_THEME.zsh-theme"
-  elif is_theme "$ZSH/themes" "$ZSH_THEME"; then
-    source "$ZSH/themes/$ZSH_THEME.zsh-theme"
+  theme_path=$(find_theme "$ZSH_THEME")
+  if [[ -n "$theme_path" ]]; then
+    source "$theme_path"
   else
-    echo "[ry-zsh] theme '$ZSH_THEME' not found"
+    echo "[ry-zsh] theme '$ZSH_THEME' not found in predefined locations"
   fi
 fi
 

@@ -1,0 +1,9 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: |
+      export EDITOR="command gp open -w" VISUAL="command gp open -w"
+      cp -f /workspace/ryzsh/templates/zshrc.zsh-template ~/.zshrc
+      ln -sf /workspace/ryzsh ~/.ry-zsh
+    command: exec zsh
